@@ -1,6 +1,9 @@
 name: Periodic health check
 
 on:
+  push: # just here so this pipeline doesnt fail, as I wanted to disable schedule
+    branches:
+      - master 
   #schedule:
     # * is a special character in YAML so you have to quote this string
     #- cron:  '*/5 * * * *'
