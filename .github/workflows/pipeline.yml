@@ -55,12 +55,12 @@ jobs:
           status: custom
           fields: commit,author,took
           custom_payload: |
-           {
-             attachments: [{
-               color: 'good'
-               text: `a new version deployed to ${process.env.AS_COMMIT} by (${process.env.AS_AUTHOR}) succeeded in ${process.env.AS_TOOK}`,
-             }]
-           }
+            {
+              attachments: [{
+                color: 'good',
+                text: `a new version deployed to ${process.env.AS_COMMIT} by (${process.env.AS_AUTHOR}) succeeded in ${process.env.AS_TOOK}`,
+              }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: success()
