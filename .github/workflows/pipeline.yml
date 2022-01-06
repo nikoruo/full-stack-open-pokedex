@@ -36,3 +36,4 @@ jobs:
           heroku_email: "niko.o.ruohonen@gmail.com"
           healthcheck: "https://enigmatic-brushlands-75826.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
