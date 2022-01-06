@@ -35,6 +35,6 @@ jobs:
           heroku_app_name: "enigmatic-brushlands-75826"
           heroku_email: "niko.o.ruohonen@gmail.com"
           healthcheck: "https://enigmatic-brushlands-75826.herokuapp.com/health"
-          checkstring: "ok"
+            checkstring: "ok"
           versioncheck: "https://enigmatic-brushlands-75826.herokuapp.com/version"
-          checkstring: "1"
+            checkstring: "1"
