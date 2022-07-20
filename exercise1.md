@@ -6,7 +6,7 @@ Exercise 11.1 Warming up
 
 3. Would this setup be better in a self-hosted or a cloud-based environment? Why? What information would you need to make that decision?
 
-----
+---
 
 a) Java application. Linting will be done with Checkstyle and unit testing will be done with JUnit. Tests need to pass before merging into main branch. Building will be done with Maven
 
