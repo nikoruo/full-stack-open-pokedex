@@ -53,12 +53,12 @@ jobs:
         if: success()
         with:
           severity: info          
-          details: text: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}
+          details: `a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${{process.env.AS_COMMIT}}) by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Info
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: failure()
         with:
           severity: error
-          details: text: commit: (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} failed
+          details: `commit: (${{process.env.AS_COMMIT}}) by ${process.env.AS_AUTHOR} failed`
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
