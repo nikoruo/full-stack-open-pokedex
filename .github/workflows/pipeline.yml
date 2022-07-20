@@ -60,5 +60,5 @@ jobs:
         if: failure()
         with:
           severity: error
-          details: commit: (${{github.event.commits.*.message}}) by ${{github.event.commits.*.committer.name}} failed
+          details: commit (${{github.event.commits.*.message}}) by ${{github.event.commits.*.committer.name}} failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
