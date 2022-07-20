@@ -48,24 +48,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch       
-      - name: Test Success
+      - name: Test Info
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
         with:
-          severity: info
+          severity: info          
           details: Test Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Failure
+      - name: Test Info
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: failure()
         with:
           severity: error
           details: Test Failed!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Cancelled
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        if: cancelled()
-        with:
-          severity: warn
-          details: Test Cancelled!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
