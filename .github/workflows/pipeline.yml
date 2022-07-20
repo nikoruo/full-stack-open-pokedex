@@ -48,23 +48,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch       
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
+      - name: Test Succeed
+        uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
         with:
-          severity: info
+          severity: info          
+          details: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1.0.4
         if: failure()
         with:
           severity: error
-          details: Test Failed!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Cancelled
-        uses: rjstone/discord-webhook-notify@v1
-        if: cancelled()
-        with:
-          severity: warn
-          details: Test Cancelled!
+          details: commit by user failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
