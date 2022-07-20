@@ -48,23 +48,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch       
-      - name: Test Succeed
-        uses: rjstone/discord-webhook-notify@v1.0.4
+      - name: Test Success
+        uses: rjstone/discord-webhook-notify@v1
         if: success()
-        env:
-          COMMIT: ${{ toJson(join(github.event.commits.*.url, ', ')) }}
-          COMMITER: ${{ toJson(join(github.event.commits.*.committer.name, ', ')) }}
         with:
-          severity: info          
-          details: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${{ fromJSON(env.COMMIT) }}) by ${{ fromJSON(env.COMMITER) }} succeeded
+          severity: info
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1.0.4
+        uses: rjstone/discord-webhook-notify@v1
         if: failure()
-        env:
-          COMMIT: ${{ toJson(join(github.event.commits.*.url, ', ')) }}
-          COMMITER: ${{ toJson(join(github.event.commits.*.committer.name, ', ')) }}
         with:
           severity: error
-          details: commit (${{fromJSON(env.COMMIT)}}) by ${{fromJSON(env.COMMITER)}} failed
+          details: Test Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Cancelled
+        uses: rjstone/discord-webhook-notify@v1
+        if: cancelled()
+        with:
+          severity: warn
+          details: Test Cancelled!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
