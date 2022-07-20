@@ -49,27 +49,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
        
-      - name: Slack success
-        uses: 8398a7/action-slack@v3
-        with:
-          status: custom
-          fields: commit,author,took
-          custom_payload: |
-            {
-              attachments: [{
-                color: 'good',
-                text: `a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`,
-              }]
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: success()
-        
-      - name: Slack failure
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo, commit, took, message, author
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
+       - name: Test Success
+            uses: rjstone/discord-webhook-notify@v1.0.4
+            if: success()
+            with:
+                severity: info
+                details: Test Succeeded!
+                webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        - name: Test Failure
+            uses: rjstone/discord-webhook-notify@v1.0.4
+            if: failure()
+            with:
+                severity: error
+                details: Test Failed!
+                webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        - name: Test Cancelled
+            uses: rjstone/discord-webhook-notify@v1.0.4
+            if: cancelled()
+            with:
+                severity: warn
+                details: Test Cancelled!
+                webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
