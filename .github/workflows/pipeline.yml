@@ -55,3 +55,10 @@ jobs:
           severity: info          
           details: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${{github.event.commits.*.message}}) by ${{github.event.commits.*.committer.name}} succeeded
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          details: commit: (${{github.event.commits.*.message}}) by ${{github.event.commits.*.committer.name}} failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
