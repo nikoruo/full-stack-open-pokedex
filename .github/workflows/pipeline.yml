@@ -56,7 +56,7 @@ jobs:
           COMMITER: ${{ toJson(join(github.event.commits.*.committer.name, ', ')) }}
         with:
           severity: info          
-          details: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${{fromJSON(env.COMMIT)}}) by ${{fromJSON(env.COMMITER)}} succeeded
+          details: a new version deployed to http://enigmatic-brushlands-75826.herokuapp.com/ (${{ fromJSON(env.COMMIT) }}) by ${{ fromJSON(env.COMMITER) }} succeeded
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1.0.4
